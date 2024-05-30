@@ -1,9 +1,11 @@
 #from: t81_558_class_10_2_lstm.ipynb (Keras and Tensorflow version)
 
-from tensorflow.keras.preprocessing import sequence
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Embedding
-from tensorflow.keras.layers import LSTM
+#from tensorflow.keras.preprocessing import sequence
+#from tensorflow.keras.models import Sequential
+#from tensorflow.keras.layers import Dense, Embedding
+#from tensorflow.keras.layers import LSTM
+
+import keras
 import numpy as np
 
 max_features = 4 # 0,1,2,3 (total of 4)
@@ -24,10 +26,10 @@ y2[np.arange(y.shape[0]), y] = 1.0
 print(y2)
 
 print('Build model...')
-model = Sequential()
-model.add(LSTM(128, dropout=0.2, recurrent_dropout=0.2, \
+model = keras.Sequential()
+model.add(keras.layers.LSTM(128, dropout=0.2, recurrent_dropout=0.2, \
                input_shape=(None, 1)))
-model.add(Dense(4, activation='sigmoid'))
+model.add(keras.layers.Dense(4, activation='sigmoid'))
 
 # try using different optimizers and different optimizer configs
 model.compile(loss='binary_crossentropy',
