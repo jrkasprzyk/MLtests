@@ -1,4 +1,7 @@
 import tensorflow as tf
+import argparse
+from typing import Dict
+from pathlib import Path, PosixPath
 
 # References
 # https://www.tensorflow.org/tutorials/images/classification
@@ -8,16 +11,40 @@ import tensorflow as tf
 # TODO verify validation vs test
 # TODO try larger image size
 # TODO setup labeling of true and false classification results: see Jun's code
+# TODO finish setting up arg parser
 
 #################
 # User Parameters
 ################
 
 # Path to the ‘supervisor’ file.
-data_dir = r"C:\Users\josep\OneDrive - UCB-O365\Students\_shares\Lee HUB\junresearch\DeeplearningCNN_flow_detection\supervisor"
+#data_dir = r"C:\Users\josep\OneDrive - UCB-O365\Students\_shares\Lee HUB\junresearch\DeeplearningCNN_flow_detection\supervisor"
 
 # Path to the output file
-output_file = r"C:\Users\josep\Documents\GitHub\MLtests\flow_detection\model_target680_batch16.keras"
+#output_file = r"C:\Users\josep\Documents\GitHub\MLtests\flow_detection\model_target680_batch16.keras"
+
+def get_args() -> Dict:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        name='--computer',
+        choices=['hpc', '2020laptop', 'seec_desktop'],
+        type=str,
+        help="Computer - dictates paths to supervisor data"
+    )
+    cfg = vars(parser.parse_args())
+    return cfg
+
+def set_supervisor_path(computer) -> Path:
+    if computer == 'hpc':
+        return Path("/projects/joka0958/supervisor/")
+    elif computer == '2020laptop':
+        return Path(r"C:\Users\josep\OneDrive - UCB-O365\Students\_shares\Lee HUB\junresearch\DeeplearningCNN_flow_detection\supervisor")
+
+def set_output_path(computer) -> Path:
+    if computer == 'hpc':
+        return Path("/projects/joka0958/MLoutput/")
+    elif computer == '2020laptop':
+        return Path(r"C:\Users\josep\Documents\GitHub\MLtests\flow_detection\model_target680_batch16.keras")
 
 
 #################
