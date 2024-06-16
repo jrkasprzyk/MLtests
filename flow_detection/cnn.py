@@ -124,12 +124,6 @@ def main() -> None:
     class_names = train_ds.class_names
     num_classes = len(class_names)
 
-
-    val_datagen = tf.keras.preprocessing.image.ImageDataGenerator(
-        rescale=1.0 / 255.0,
-        validation_split=config['validation_split']
-    )
-
     model = Sequential([
         layers.Rescaling(1. / 255, input_shape=(config["edge_size"],
                                                 config["edge_size"],
@@ -161,6 +155,10 @@ def main() -> None:
         validation_data=val_ds,
     )
 
+    # label errors
+    
+
+    # plot history
     acc = history.history['accuracy']
     val_acc = history.history['val_accuracy']
 
