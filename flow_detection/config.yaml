@@ -1,0 +1,20 @@
+  # for setting paths
+  computer: seecdesktop
+
+  # data setup
+  validation_split: 0.2
+
+  # hyperparameters
+  batch_size: 128
+  edge_size: 256
+  activation_function: relu
+
+  # training
+  epochs: 5
+  learning_rate: 1.0e-3
+
+  # experiment parameters
+  trial_label: edge256batch128
+  plot_history: False
+  save_model: True
+  verbose: True
